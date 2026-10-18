@@ -5,41 +5,45 @@
 class Mehshell < Formula
   desc "Fast, parallelized zsh prompt engine written in Go"
   homepage "https://bromigos.org"
-  version "0.2.4"
+  version "0.2.5"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.4/mehshell_darwin_amd64.tar.gz"
-      sha256 "0ea0316ef2f953fe58b055fbfac3bfc8aa4ccfdab8383e824510f150a1fe2717"
+      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.5/mehshell_darwin_amd64.tar.gz"
+      sha256 "edea544e59284710448a8a1f89ac774a9016108a33c1ceb79c351fa0e84f3af6"
 
       define_method(:install) do
         bin.install "mehshell"
+        doc.install "LICENSE", "LICENSE-UNICODE", "README.md"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.4/mehshell_darwin_arm64.tar.gz"
-      sha256 "4a4b10a196dba9a93a0f26aaf608c1f584d90a228c9fb0b7a092de62c2ce9042"
+      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.5/mehshell_darwin_arm64.tar.gz"
+      sha256 "5cb5e7931bf1ecc7c1a477d017e699bd216e0f725da4788b8dcc3d46ffe91c2c"
 
       define_method(:install) do
         bin.install "mehshell"
+        doc.install "LICENSE", "LICENSE-UNICODE", "README.md"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.4/mehshell_linux_amd64.tar.gz"
-      sha256 "b8c9155fcebd525870546a31e3aa548b4488f6a66a095bddfbd60b2bf44b662d"
+      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.5/mehshell_linux_amd64.tar.gz"
+      sha256 "02364b8a34217bda002cb815b53300e08ecc0787ad3332dd124c0a2140dbc0db"
       define_method(:install) do
         bin.install "mehshell"
+        doc.install "LICENSE", "LICENSE-UNICODE", "README.md"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.4/mehshell_linux_arm64.tar.gz"
-      sha256 "7a17f62c0029a4904ae54b7e65c3d2d105898cf307240f7a914c328001a9804c"
+      url "https://github.com/bromigos-org/mehshell/releases/download/v0.2.5/mehshell_linux_arm64.tar.gz"
+      sha256 "5eab4981df402d44f73d82782789034e90e8018166acad8831c6d5b6de16c8e6"
       define_method(:install) do
         bin.install "mehshell"
+        doc.install "LICENSE", "LICENSE-UNICODE", "README.md"
       end
     end
   end
