@@ -1,4 +1,4 @@
-name: Formula syntax
+name: Formula
 on: [push, pull_request]
 permissions:
   contents: read
@@ -8,3 +8,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: ruby -c mehshell.rb
+  # Install the formula from this commit on each platform it has a download for.
+  # brew checks every download against its sha256, so a formula whose url, sha256
+  # or version does not match the published release fails here.
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Homebrew publishes no releases of its actions; its own tap template uses main.
+      # This job has a read-only token and no secrets.
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew install bromigos-org/tap/mehshell
+      - name: The installed binary reports the formula's version
+        run: |
+          brew list --versions mehshell
+          test "$(mehshell --version)" = "$(brew list --versions mehshell)"
